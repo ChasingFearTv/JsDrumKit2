@@ -37,10 +37,46 @@ for (var i = 0; i < drums; i++) {
 
             default: console.log(buttonInnerHTML);
 
-            
         }
     })
 }
+
+
+
+const drumbutt = document.querySelectorAll('.drum');
+
+drumbutt.forEach(drum => {
+    drum.addEventListener('pointerdown', e => {
+        // play sound
+        const audio = document.querySelector(`audio[data-key="${drum}"]`);
+        if (!audio) return;
+        audio.currentTime = 0;
+        audio.play();
+
+        // add dot
+        const dot = document.createElement('div')
+        dot.classList.add('dot')
+        dot.id = e.pointerId
+        positionDot(e, dot)
+        document.body.append(dot)
+    })
+
+    drum.addEventListener('pointermove', e => {
+        const dot = document.getElementById(e.pointerId)
+        if (dot == null) return
+        positionDot(e, dot)
+    })
+    drum.addEventListener('pointerup', e => {
+        const dot = document.getElementById(e.pointerId)
+        if (dot == null) return
+        dot.remove()
+    })
+    drum.addEventListener('pointercancel', e => {
+        const dot = document.getElementById(e.pointerId)
+        if (dot == null) return
+        dot.remove()
+    })
+})
 
 // var audio = new Audio('sounds/tom-1.mp3');
 // audio.play();

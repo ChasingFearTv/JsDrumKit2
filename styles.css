@@ -1,6 +1,7 @@
 body {
   text-align: center;
   background-color: #283149;
+  touch-action: none;
 }
 
 h1 {
@@ -8,7 +9,6 @@ h1 {
   color: #DBEDF3;
   font-family: "Arvo", cursive;
   text-shadow: 3px 0 #DA0463;
-
 }
 
 footer {
@@ -78,4 +78,10 @@ footer {
   text-align: center;
   margin: 10px;
   background-color: white;
+}
+
+@media (max-width: 991.98px) {
+  h1 {
+      display: none;
+  }
 }

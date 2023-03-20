@@ -1,5 +1,4 @@
 
-
 // Detecting Button Press
 
 var drums = document.querySelectorAll(".drum").length;
@@ -11,17 +10,19 @@ for (var i = 0; i < drums; i++) {
         var buttonInnerHTML = this.innerHTML;
 
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML)
 
     })
 }
 
-
 document.addEventListener("keydown", function (event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 
 document.addEventListener("touch", function (event) {
     makeSound(event.touches);
+    buttonAnimation(event.touches);
 })
 
 //Detecting Keyboard Press
@@ -62,50 +63,11 @@ function makeSound(key) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-// const drumbutt = document.querySelectorAll('.drum');
-
-// drumbutt.forEach(drum => {
-//     drum.addEventListener('pointerdown', e => {
-         // play sound
-//         const audio = document.querySelector(`audio[data-key="${drum}"]`);
-//         if (!audio) return;
-//         audio.currentTime = 0;
-//         audio.play();
-
-// add dot
-//         const dot = document.createElement('div')
-//         dot.classList.add('dot')
-//         dot.id = e.pointerId
-//         positionDot(e, dot)
-//         document.body.append(dot)
-//     })
-
-//     drum.addEventListener('pointermove', e => {
-//         const dot = document.getElementById(e.pointerId)
-//         if (dot == null) return
-//         positionDot(e, dot)
-//     })
-//     drum.addEventListener('pointerup', e => {
-//         const dot = document.getElementById(e.pointerId)
-//         if (dot == null) return
-//         dot.remove()
-//     })
-//     drum.addEventListener('pointercancel', e => {
-//         const dot = document.getElementById(e.pointerId)
-//         if (dot == null) return
-//         dot.remove()
-//     })
-// })
-
-//var audio = new Audio('sounds/tom-1.mp3');
-//audio.play();
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
